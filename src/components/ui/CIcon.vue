@@ -1,15 +1,17 @@
 <template>
   <div>
+
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import {defineComponent} from "vue"
 
 export default defineComponent({
-  name: 'App',
+  name: 'c-icon',
 })
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
+
 </style>
