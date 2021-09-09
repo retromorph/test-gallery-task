@@ -4,6 +4,7 @@ export default class Masterpiece {
     private readonly _author: string
     private readonly _creationYear: string
     private readonly _price: string | null
+    private readonly _discountedPrice: string | null
     private _isSold: boolean
 
     // fabric method to create Masterpiece from data
@@ -11,13 +12,14 @@ export default class Masterpiece {
 
     }
 
-    constructor(id: number, name: string, author: string, creationYear: string, price: string | null, isSold: boolean) {
-        this._id = id
-        this._name = name
-        this._author = author
-        this._creationYear = creationYear
-        this._price = price
-        this._isSold = isSold
+    constructor(id: number, name: string, author: string, creationYear: string, price: string | null, discountedPrice: string | null, isSold: boolean) {
+        this._id = id;
+        this._name = name;
+        this._author = author;
+        this._creationYear = creationYear;
+        this._price = price;
+        this._discountedPrice = discountedPrice;
+        this._isSold = isSold;
     }
 
     get id(): number {
@@ -38,6 +40,10 @@ export default class Masterpiece {
 
     get price(): string | null {
         return this._price
+    }
+
+    get discountedPrice(): string | null {
+        return this._discountedPrice;
     }
 
     get isSold(): boolean {
