@@ -1,14 +1,6 @@
 <template>
   <div>
-    <c-icon icon="base"/>
-    <c-text-button unactive>
-      Проданные на аукционе
-    </c-text-button>
-    <c-button active>
-      Normal
-    </c-button>
-    <c-counter :amount="5"/>
-    <c-search-input placeholder="Поиск по названию картины"/>
+
   </div>
 </template>
 
