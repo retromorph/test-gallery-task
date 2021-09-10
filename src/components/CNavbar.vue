@@ -28,7 +28,6 @@ export default defineComponent({
 @import "~@/assets/styles/global.styl"
 
 .c-navbar
-  background: url("~@/assets/images/footer-image.png")
   color: secondary-color
 
   &__inner

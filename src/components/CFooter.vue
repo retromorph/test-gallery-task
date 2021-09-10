@@ -46,7 +46,7 @@ export default defineComponent({
 .c-footer
   position relative
   height: 218px
-  background: url("~@/assets/images/footer-image.png") center center
+  background: url("~@/assets/images/footer-image.webp") center center
   color: secondary-color
   margin-top 150px
   z-index -1

@@ -36,7 +36,7 @@
     </div>
 
     <img class="c-masterpiece__image"
-         src="@/assets/images/test-image.png"
+         :src="imageUrl"
          :alt="`Картинка к ${masterpiece.name}`"/>
   </div>
 </template>
@@ -63,6 +63,9 @@ export default defineComponent({
     }),
     isInCart(): boolean {
       return this.cart.isProductInCart(this.masterpiece.id)
+    },
+    imageUrl(): string {
+      return require(`@/assets/images/image-${this.masterpiece.id}.webp`)
     }
   },
   methods: {
