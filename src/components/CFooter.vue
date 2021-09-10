@@ -26,7 +26,7 @@ import {mapState} from "vuex"
 import {State} from "@/store"
 
 export default defineComponent({
-  name: 'Footer',
+  name: 'c-footer',
   computed: {
     ...mapState({
       companyPhone: (state: State) => state.companyPhone,
@@ -62,7 +62,7 @@ export default defineComponent({
     z-index -1
 
   &__inner
-    height: 218px
+    height: 100%
     display flex
     justify-content space-between
     align-items center
