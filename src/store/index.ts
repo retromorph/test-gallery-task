@@ -1,25 +1,31 @@
-import {createStore, Commit} from "vuex"
+import {createStore} from "vuex"
 import Masterpiece from "@/entities/Masterpiece"
 import Cart from "@/entities/Cart"
+import Masterpieces from "@/pages/Masterpieces.vue";
 
 const stateWrapper = () => Object.create({
     masterpieces: new Array<Masterpiece>(),
     cart: new Cart(),
-    selectedFilter: "",
     searchQuery: "",
     filterOptions: [
         {value: "all", name: "Все"},
         {value: "sold", name: "Проданные на аукционе"},
     ],
-    isMasterpiecesLoading: false
+    selectedFilter: "all",
+    isMasterpiecesLoading: false,
+    companyPhone: "+7 (495) 555-55-55",
+    companyAddress: "Москва, Красная площадь, 52",
+    companyName: "Эпоха возрождения"
 })
 
+export type State = ReturnType<typeof stateWrapper>
+
 const getter = {
-    productsAmount(state: ReturnType<typeof stateWrapper>): number {
+    productsAmount(state: State): number {
         return state.cart.productsAmount()
     },
-    filteredMasterpieces(state: ReturnType<typeof stateWrapper>) {
-        return [...state.posts].filter((masterpiece: Masterpiece) => {
+    filteredMasterpieces(state: State) {
+        return [...state.masterpieces].filter((masterpiece: Masterpiece) => {
             if (state.selectedFilter == "sold") {
                 return masterpiece.isSold
             } else {
@@ -27,34 +33,40 @@ const getter = {
             }
         })
     },
-    filteredAndSearchedMasterpieces(state: ReturnType<typeof stateWrapper>, getters: any) {
-        return getters.filteredPosts.filter(
+    filteredAndSearchedMasterpieces(state: State, getters: any) {
+        return getters.filteredMasterpieces.filter(
             (masterpiece: Masterpiece) => masterpiece.name.toLowerCase().includes(state.searchQuery.toLowerCase())
         )
     }
 }
 
 const mutations = {
-    setMasterpieces(state: ReturnType<typeof stateWrapper>, masterpieces: Masterpiece[]) {
+    setMasterpieces(state: State, masterpieces: Masterpiece[]) {
         state.masterpieces = masterpieces
     },
-    addProduct(state: ReturnType<typeof stateWrapper>, product: Masterpiece) {
+    addProduct(state: State, product: Masterpiece) {
         state.cart.addProduct(product.id)
     },
-    removeProduct(state: ReturnType<typeof stateWrapper>, product: Masterpiece) {
+    removeProduct(state: State, product: Masterpiece) {
         state.cart.removeProduct(product.id)
     },
-    setLoading(state: ReturnType<typeof stateWrapper>, isMasterpiecesLoading: boolean) {
+    setSelectedFilter(state: State, selectedFilter: string) {
+        state.selectedFilter = selectedFilter
+    },
+    setSearchQuery(state: State, searchQuery: string) {
+        state.searchQuery = searchQuery
+    },
+    setLoading(state: State, isMasterpiecesLoading: boolean) {
         state.isMasterpiecesLoading = isMasterpiecesLoading
     }
 }
 
 const actions = {
-    async fetchMasterpieces(state: ReturnType<typeof stateWrapper>, commit: Commit) {
+    async fetchMasterpieces({state, commit}: {state: any, commit: any}) {
         try {
             commit('setLoading', true);
             const response = await fetch("https://my-json-server.typicode.com/retromorph/test-gallery-task-db/masterpieces")
-            commit('setMasterpieces', response.body)
+            commit('setMasterpieces', (await response.json()).map((masterpiece: any) => Masterpiece.fromData(masterpiece)))
         } catch (e) {
             console.log(e)
         } finally {

@@ -1,9 +1,11 @@
 <template>
   <button :class="{
     'c-text-button': true,
+    [`c-text-button--${size}`]: true,
     'c-text-button--unactive': unactive,
     'c-text-button--capitalize': capitalize,
-    'c-text-button--has-icon': hasIcon,
+    'c-text-button--doublet': doublet,
+    'c-text-button--triplet': triplet,
   }">
     <slot></slot>
   </button>
@@ -15,6 +17,13 @@ import {defineComponent} from "vue"
 export default defineComponent({
   name: "c-text-button",
   props: {
+    size: {
+      type: String,
+      default: "common",
+      validator(value: string) {
+        return ["small", "common"].includes(value)
+      }
+    },
     unactive: {
       type: Boolean,
       default: false
@@ -23,7 +32,11 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    hasIcon: {
+    doublet: {
+      type: Boolean,
+      default: false
+    },
+    triplet: {
       type: Boolean,
       default: false
     },
@@ -41,13 +54,19 @@ export default defineComponent({
   background-color transparent
   border none
   color secondary-color
-  padding 12px 32px
   cursor pointer
-  h(14px, 21px, regular)
   transition(opacity)
 
   &:hover
     opacity 0.5
+
+  &--common
+    height 44px
+    h(14px, 21px, normal)
+
+  &--small
+    height 34px
+    h(16px, 24px, normal)
 
   &--unactive
     opacity 0.5
@@ -59,7 +78,11 @@ export default defineComponent({
     text-transform uppercase
     letter-spacing 1px
 
-  &--has-icon
+  &--doublet
     grid-template-columns auto auto
+    grid-gap: 12px
+
+  &--triplet
+    grid-template-columns auto auto auto
     grid-gap: 12px
 </style>
