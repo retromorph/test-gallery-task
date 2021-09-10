@@ -60,9 +60,19 @@ transition(prop)
   transition 0.3s prop ease
 
 container()
-  max-width 63vw
   margin-left auto
   margin-right auto
+  @media (max-width: 1920px)
+    max-width 1216px
+
+  @media (max-width: 1440px)
+    max-width 1041px
+
+  @media (max-width: 1057px)
+    max-width: 774px
+
+  @media (max-width: 780px)
+    max-width: 507px
 
 container-fluid()
   max-width 90.625vw

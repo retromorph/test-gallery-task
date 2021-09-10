@@ -73,10 +73,11 @@ export default defineComponent({
   &__toolbar
     display flex
     justify-content space-between
+    align-items center
 
   &__store
     display grid
-    grid-template-columns 1fr 1fr 1fr 1fr
+    grid-template-columns repeat(4, 1fr)
     grid-gap 32px
     margin-top 90px
 
@@ -110,4 +111,38 @@ export default defineComponent({
   &-enter {
     transform: scale(0.9)
   }
+
+@media (max-width: 1920px)
+  .p-masterpieces__store
+    .c-masterpiece:nth-child(13n+3)
+      height 452px
+      width 592px
+      grid-area 1 / 3 / 3 / 5
+
+@media (max-width: 1440px)
+  .p-masterpieces__store
+    grid-gap: 27px
+
+    .c-masterpiece:nth-child(13n+3)
+      height 387px
+      width 507px
+      grid-area 1 / 3 / 3 / 5
+
+@media (max-width: 1070px)
+  .p-masterpieces__store
+    grid-template-columns repeat(3, 1fr)
+
+    .c-masterpiece:nth-child(13n+3)
+      height 180px
+      width 240px
+      grid-area auto
+
+@media (max-width: 780px)
+  .p-masterpieces__store
+    grid-template-columns repeat(2, 1fr)
+
+    .c-masterpiece:nth-child(13n+3)
+      height 180px
+      width 240px
+      grid-area auto
 </style>

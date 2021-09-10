@@ -46,7 +46,7 @@ export default defineComponent({
 .c-footer
   position relative
   height: 218px
-  background: url("~@/assets/images/footer-image.png")
+  background: url("~@/assets/images/footer-image.png") center center
   color: secondary-color
   margin-top 150px
   z-index -1
@@ -59,7 +59,7 @@ export default defineComponent({
     top 0
     right 0
     bottom 0
-    background rgba(primary-color, 0.5)
+    background rgba(primary-color, 0.2)
     z-index -1
 
   &__inner
@@ -72,6 +72,4 @@ export default defineComponent({
 
   &__copyright
     color: rgba(secondary-color, 0.5)
-
-
 </style>

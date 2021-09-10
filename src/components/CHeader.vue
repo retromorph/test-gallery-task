@@ -28,4 +28,8 @@ export default defineComponent({
 
   &__styled-letter
     font-family font-family-styled
+
+@media (max-width: 780px)
+  .c-header
+    display none
 </style>

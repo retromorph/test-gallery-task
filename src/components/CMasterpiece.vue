@@ -78,8 +78,8 @@ export default defineComponent({
 
 .c-masterpiece
   position relative
-  width 14.6vw
-  height 11vw
+  width 280px
+  height 210px
   color secondary-color
   box-sizing border-box
   padding 24px
@@ -115,4 +115,9 @@ export default defineComponent({
   &--sold
     .c-masterpiece__image
       filter brightness(20%)
+
+@media (max-width: 1440px)
+  .c-masterpiece
+    width 240px
+    height 180px
 </style>
