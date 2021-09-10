@@ -1,6 +1,7 @@
 <template>
   <button :class="{
     'c-text-button': true,
+    [`c-text-button--${size}`]: true,
     'c-text-button--unactive': unactive,
     'c-text-button--capitalize': capitalize,
     'c-text-button--doublet': doublet,
@@ -16,6 +17,13 @@ import {defineComponent} from "vue"
 export default defineComponent({
   name: "c-text-button",
   props: {
+    size: {
+      type: String,
+      default: "common",
+      validator(value: string) {
+        return ["small", "common"].includes(value)
+      }
+    },
     unactive: {
       type: Boolean,
       default: false
@@ -46,13 +54,19 @@ export default defineComponent({
   background-color transparent
   border none
   color secondary-color
-  padding 12px 0
   cursor pointer
-  h(14px, 21px, normal)
   transition(opacity)
 
   &:hover
     opacity 0.5
+
+  &--common
+    height 44px
+    h(14px, 21px, normal)
+
+  &--small
+    height 34px
+    h(16px, 24px, normal)
 
   &--unactive
     opacity 0.5

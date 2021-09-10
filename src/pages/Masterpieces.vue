@@ -1,6 +1,6 @@
 <template>
-  <main class="p-masterpiece">
-    <section class="p-masterpiece__toolbar">
+  <main class="p-masterpieces">
+    <section class="p-masterpieces__toolbar">
       <c-select :options="filterOptions"
                 :model-value="selectedFilter"
                 @update:model-value="setSelectedFilter"/>
@@ -10,11 +10,21 @@
                       @update:model-value="setSearchQuery"/>
     </section>
 
-    <section class="p-masterpiece__store">
+    <transition-group
+        tag="section"
+        name="p-masterpieces"
+        class="p-masterpieces__store">
       <c-masterpiece v-for="masterpiece in filteredAndSearchedMasterpieces"
                      :key="masterpiece.id"
                      :masterpiece="masterpiece"/>
-    </section>
+    </transition-group>
+
+    <transition name="fade">
+      <div v-if="filteredAndSearchedMasterpieces.length === 0"
+           class="p-masterpieces__no-products">
+        Товары не найдены
+      </div>
+    </transition>
   </main>
 </template>
 
@@ -56,17 +66,48 @@ export default defineComponent({
 <style lang="stylus" scoped>
 @import "~@/assets/styles/global.styl"
 
-.p-masterpiece
+.p-masterpieces
   margin-top: 132px
   container()
 
   &__toolbar
-    height: 15vh
     display flex
     justify-content space-between
 
   &__store
     display grid
     grid-template-columns 1fr 1fr 1fr 1fr
+    grid-gap 32px
     margin-top 90px
+
+  &__no-products
+    display flex
+    justify-content center
+    width 100%
+    color secondary-color
+    margin-top 90px
+    h2()
+
+  .c-masterpiece
+    transform-origin 10% 50%
+    transition(all)
+
+  &-enter-active {
+    transition: all 300ms ease-out
+  }
+
+  &-leave-active {
+    transition: all 200ms ease-in;
+    position: absolute;
+    z-index: 0;
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0
+  }
+
+  &-enter {
+    transform: scale(0.9)
+  }
 </style>

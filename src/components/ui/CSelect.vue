@@ -4,7 +4,8 @@
                :key="option.value"
                :is="buttonOrTextButton(option.value)"
                @click="()=>select(option.value)"
-               unactive>
+               unactive
+               size="small">
       {{ option.name }}
     </component>
   </div>
@@ -40,9 +41,8 @@ export default defineComponent({
   display grid
   grid-auto-flow column
   grid-gap 4px
-  height 34px
 
   .c-text-button
-    padding-left 33px
-    padding-right 33px
+    padding-left 18px
+    padding-right 18px
 </style>

@@ -9,6 +9,10 @@ export default class Cart {
         this._productIds.delete(productId)
     }
 
+    isProductInCart(productId: number): boolean{
+        return this._productIds.has(productId)
+    }
+
     productsAmount(): number {
         return this._productIds.size
     }

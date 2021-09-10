@@ -1,6 +1,7 @@
 import {createStore} from "vuex"
 import Masterpiece from "@/entities/Masterpiece"
 import Cart from "@/entities/Cart"
+import Masterpieces from "@/pages/Masterpieces.vue";
 
 const stateWrapper = () => Object.create({
     masterpieces: new Array<Masterpiece>(),
@@ -65,7 +66,7 @@ const actions = {
         try {
             commit('setLoading', true);
             const response = await fetch("https://my-json-server.typicode.com/retromorph/test-gallery-task-db/masterpieces")
-            commit('setMasterpieces', await response.json())
+            commit('setMasterpieces', (await response.json()).map((masterpiece: any) => Masterpiece.fromData(masterpiece)))
         } catch (e) {
             console.log(e)
         } finally {

@@ -4,7 +4,7 @@
            autocomplete="off"
            required
            :value="modelValue"
-           @input="updateInput">
+           @change="updateInput">
     <hr>
     <label>{{ placeholder }}</label>
     <c-text-button capitalize doublet>

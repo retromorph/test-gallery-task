@@ -9,8 +9,9 @@ export default class Masterpiece {
     private _isSold: boolean
 
     // fabric method to create Masterpiece from data
-    static fromData(data: JSON) {
-
+    static fromData(data: any): Masterpiece {
+        console.log(data)
+        return new Masterpiece(data["id"], "", data["name"], data["author"], data["creationYear"], data["price"], data["discountedPrice"], data["isSold"])
     }
 
     constructor(id: number, image: string, name: string, author: string, creationYear: string, price: string | null, discountedPrice: string | null, isSold: boolean) {
