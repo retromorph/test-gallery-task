@@ -1,10 +1,15 @@
 <template>
   <fieldset class="c-search-input">
-    <input type="text" autocomplete="off" required>
+    <input type="text"
+           autocomplete="off"
+           required
+           :value="modelValue"
+           @input="updateInput">
     <hr>
     <label>{{ placeholder }}</label>
     <c-text-button capitalize doublet>
-      Найти <c-icon icon="search"/>
+      Найти
+      <c-icon icon="search"/>
     </c-text-button>
   </fieldset>
 </template>
@@ -15,7 +20,13 @@ import {defineComponent} from "vue"
 export default defineComponent({
   name: 'c-search-input',
   props: {
+    modelValue: [String, Number],
     placeholder: String
+  },
+  methods: {
+    updateInput(event: Event) {
+      this.$emit('update:modelValue', (<HTMLInputElement>event.target).value)
+    }
   }
 })
 </script>

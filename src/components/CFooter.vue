@@ -48,6 +48,7 @@ export default defineComponent({
   height: 218px
   background: url("~@/assets/images/footer-image.png")
   color: secondary-color
+  margin-top 150px
   z-index -1
 
   &::after

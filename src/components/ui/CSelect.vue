@@ -3,7 +3,8 @@
     <component v-for="option in options"
                :key="option.value"
                :is="buttonOrTextButton(option.value)"
-               @click="()=>select(option.value)">
+               @click="()=>select(option.value)"
+               unactive>
       {{ option.name }}
     </component>
   </div>
@@ -37,9 +38,11 @@ export default defineComponent({
 
 .c-select
   display grid
-  grid-auto-flow row
+  grid-auto-flow column
   grid-gap 4px
+  height 34px
 
   .c-text-button
-    margin-left 32px
+    padding-left 33px
+    padding-right 33px
 </style>

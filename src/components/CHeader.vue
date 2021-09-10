@@ -11,8 +11,7 @@
 import {defineComponent} from "vue"
 
 export default defineComponent({
-  name: "c-header",
-  computed: {}
+  name: "c-header"
 })
 </script>
 
