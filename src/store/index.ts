@@ -1,10 +1,16 @@
-import {createStore} from "vuex"
+import {ActionContext, createStore, GetterTree, MutationTree} from "vuex"
 import Masterpiece from "@/entities/Masterpiece"
 import Cart from "@/entities/Cart"
-import Masterpieces from "@/pages/Masterpieces.vue";
+import Company from "@/entities/Company"
 
-const stateWrapper = () => Object.create({
+export type State = typeof state
+const state = {
     masterpieces: new Array<Masterpiece>(),
+    company: new Company(
+        "+7 (495) 555-55-55",
+        "Москва, Красная площадь, 52",
+        "Эпоха возрождения"
+    ),
     cart: new Cart(),
     searchQuery: "",
     filterOptions: [
@@ -13,18 +19,13 @@ const stateWrapper = () => Object.create({
     ],
     selectedFilter: "all",
     isMasterpiecesLoading: false,
-    companyPhone: "+7 (495) 555-55-55",
-    companyAddress: "Москва, Красная площадь, 52",
-    companyName: "Эпоха возрождения"
-})
+}
 
-export type State = ReturnType<typeof stateWrapper>
-
-const getter = {
+const getters = {
     productsAmount(state: State): number {
         return state.cart.productsAmount()
     },
-    filteredMasterpieces(state: State) {
+    filteredMasterpieces(state: State): Masterpiece[] {
         return [...state.masterpieces].filter((masterpiece: Masterpiece) => {
             if (state.selectedFilter == "sold") {
                 return masterpiece.isSold
@@ -33,12 +34,13 @@ const getter = {
             }
         })
     },
-    filteredAndSearchedMasterpieces(state: State, getters: any) {
+    filteredAndSearchedMasterpieces(state: State, getters: any): Masterpiece[] {
         return getters.filteredMasterpieces.filter(
             (masterpiece: Masterpiece) => masterpiece.name.toLowerCase().includes(state.searchQuery.toLowerCase())
         )
     }
 }
+
 
 const mutations = {
     setMasterpieces(state: State, masterpieces: Masterpiece[]) {
@@ -62,22 +64,27 @@ const mutations = {
 }
 
 const actions = {
-    async fetchMasterpieces({state, commit}: {state: any, commit: any}) {
+    async fetchMasterpieces(context: ActionContext<State, State>) {
         try {
-            commit('setLoading', true);
-            const response = await fetch("https://my-json-server.typicode.com/retromorph/test-gallery-task-db/masterpieces")
-            commit('setMasterpieces', (await response.json()).map((masterpiece: any) => Masterpiece.fromData(masterpiece)))
+            context.commit('setLoading', true);
+            const response = await fetch(
+                "https://my-json-server.typicode.com/retromorph/test-gallery-task-db/masterpieces"
+            )
+            context.commit(
+                'setMasterpieces',
+                (await response.json()).map((masterpiece: any) => Masterpiece.fromData(masterpiece))
+            )
         } catch (e) {
             console.log(e)
         } finally {
-            commit('setLoading', false);
+            context.commit('setLoading', false);
         }
     }
 }
 
 export default createStore({
-    state: stateWrapper,
-    getters: getter,
-    mutations: mutations,
-    actions: actions
+    state,
+    getters,
+    mutations,
+    actions
 })

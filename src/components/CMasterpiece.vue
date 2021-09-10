@@ -1,5 +1,8 @@
 <template>
-  <div :class="{'c-masterpiece': true, 'c-masterpiece--sold': masterpiece.isSold}">
+  <div :class="{
+    'c-masterpiece': true,
+    'c-masterpiece--sold': masterpiece.isSold
+  }">
     <div class="c-masterpiece__inner">
       <div>
         <h2>
