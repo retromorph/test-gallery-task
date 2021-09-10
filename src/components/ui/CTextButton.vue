@@ -3,7 +3,8 @@
     'c-text-button': true,
     'c-text-button--unactive': unactive,
     'c-text-button--capitalize': capitalize,
-    'c-text-button--has-icon': hasIcon,
+    'c-text-button--doublet': doublet,
+    'c-text-button--triplet': triplet,
   }">
     <slot></slot>
   </button>
@@ -23,7 +24,11 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    hasIcon: {
+    doublet: {
+      type: Boolean,
+      default: false
+    },
+    triplet: {
       type: Boolean,
       default: false
     },
@@ -43,7 +48,7 @@ export default defineComponent({
   color secondary-color
   padding 12px 32px
   cursor pointer
-  h(14px, 21px, regular)
+  h(14px, 21px, normal)
   transition(opacity)
 
   &:hover
@@ -59,7 +64,11 @@ export default defineComponent({
     text-transform uppercase
     letter-spacing 1px
 
-  &--has-icon
+  &--doublet
     grid-template-columns auto auto
+    grid-gap: 12px
+
+  &--triplet
+    grid-template-columns auto auto auto
     grid-gap: 12px
 </style>

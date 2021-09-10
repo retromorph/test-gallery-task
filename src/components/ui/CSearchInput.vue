@@ -3,7 +3,7 @@
     <input type="text" autocomplete="off" required>
     <hr>
     <label>{{ placeholder }}</label>
-    <c-text-button capitalize has-icon>
+    <c-text-button capitalize doublet>
       Найти <c-icon icon="search"/>
     </c-text-button>
   </fieldset>
