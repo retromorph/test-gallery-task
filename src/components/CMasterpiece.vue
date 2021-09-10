@@ -78,7 +78,8 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
 
 .c-masterpiece
   position relative

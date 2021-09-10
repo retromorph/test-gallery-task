@@ -1,15 +1,17 @@
 <template>
-  <navbar class="c-navbar">
+  <nav class="c-navbar">
     <div class="c-navbar__inner">
       <c-icon icon="base"/>
 
-      <c-text-button capitalize triplet>
+      <c-text-button capitalize doublet>
         <c-icon icon="cart"/>
-        Корзина
-        <c-counter :amount="productsAmount"/>
+        <div>
+          Корзина
+          <c-counter :amount="productsAmount"/>
+        </div>
       </c-text-button>
     </div>
-  </navbar>
+  </nav>
 </template>
 
 <script lang="ts">
@@ -25,7 +27,8 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
 
 .c-navbar
   color: secondary-color
@@ -42,5 +45,5 @@ export default defineComponent({
   &__tagline
     text-transform uppercase
     letter-spacing 1px
-    h(14px, 20px, normal)
+    h4()
 </style>

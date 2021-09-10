@@ -4,8 +4,7 @@
     [`c-text-button--${size}`]: true,
     'c-text-button--unactive': unactive,
     'c-text-button--capitalize': capitalize,
-    'c-text-button--doublet': doublet,
-    'c-text-button--triplet': triplet,
+    'c-text-button--doublet': doublet
   }">
     <slot></slot>
   </button>
@@ -35,17 +34,14 @@ export default defineComponent({
     doublet: {
       type: Boolean,
       default: false
-    },
-    triplet: {
-      type: Boolean,
-      default: false
-    },
+    }
   }
 })
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
 
 .c-text-button
   display inline-grid
@@ -62,7 +58,7 @@ export default defineComponent({
 
   &--common
     height 44px
-    h(14px, 21px, normal)
+    h4()
 
   &--small
     height 34px
@@ -80,9 +76,5 @@ export default defineComponent({
 
   &--doublet
     grid-template-columns auto auto
-    grid-gap: 12px
-
-  &--triplet
-    grid-template-columns auto auto auto
     grid-gap: 12px
 </style>

@@ -1,5 +1,7 @@
 <template>
-  <img class="c-icon" :src="iconUrl" :alt="icon"/>
+  <img class="c-icon" 
+       :src="iconUrl" 
+       :alt="icon"/>
 </template>
 
 <script lang="ts">
@@ -12,7 +14,7 @@ export default defineComponent({
       type: String,
       required: true,
       validator(value: string): boolean {
-        return ['base', 'cart', 'logo', 'sold', 'search', 'ok'].includes(value)
+        return ["base", "cart", "logo", "sold", "search", "ok"].includes(value)
       }
     }
   },

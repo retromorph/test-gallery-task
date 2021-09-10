@@ -1,13 +1,13 @@
 <template>
   <fieldset class="c-search-input">
-    <input type="text"
-           autocomplete="off"
-           :id="id"
-           required
+    <input :id="id"
            :value="modelValue"
-           @change="updateInput">
+           required
+           @change="updateValue">
     <hr>
+
     <label :for="id">{{ placeholder }}</label>
+
     <c-text-button capitalize doublet>
       Найти
       <c-icon icon="search"/>
@@ -20,10 +20,10 @@ import {defineComponent} from "vue"
 import Helpers from "@/entities/Helpers"
 
 export default defineComponent({
-  name: 'c-search-input',
+  name: "c-search-input",
   data() {
     return {
-      id: Helpers.uuidv4()
+      id: Helpers.getInstance().uuidv4()
     }
   },
   props: {
@@ -31,15 +31,16 @@ export default defineComponent({
     placeholder: String
   },
   methods: {
-    updateInput(event: Event) {
-      this.$emit('update:modelValue', (<HTMLInputElement>event.target).value)
+    updateValue(event: Event) {
+      this.$emit("update:modelValue", (<HTMLInputElement>event.target).value)
     }
   }
 })
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
 
 .c-search-input
   position relative
@@ -47,7 +48,7 @@ export default defineComponent({
   margin 5px
   border none
   overflow visible
-  width 40%
+  width 488px
 
   input
     box-sizing border-box
@@ -64,13 +65,13 @@ export default defineComponent({
     h(16px, 24px, normal)
 
     &::-webkit-input-placeholder
-      transition color 0.3 ease
+      transition(color)
 
     &:not(:focus)::-webkit-input-placeholder
       color transparent
 
   hr
-    content ''
+    content ""
     display block
     position absolute
     bottom 0
@@ -80,7 +81,6 @@ export default defineComponent({
     width 100%
     height 1px
     border none
-    font-size 1px
     will-change transform, visibility
     transition all 200ms ease-out
     transform scaleX(0)

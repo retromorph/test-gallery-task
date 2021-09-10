@@ -64,7 +64,9 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
+@import "~@/assets/styles/animations.styl"
 
 .p-masterpieces
   margin-top: 132px
