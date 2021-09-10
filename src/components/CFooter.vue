@@ -3,17 +3,17 @@
     <div class="c-footer__inner">
       <div>
         <h2>
-          {{ companyPhone }}
+          {{ company.companyPhone }}
         </h2>
 
         <h2>
-          {{ companyAddress }}
+          {{ company.companyAddress }}
         </h2>
       </div>
 
       <div>
         <h2 class="c-footer__copyright">
-          {{ companyCopyright }}
+          {{ company.copyright }}
         </h2>
       </div>
     </div>
@@ -29,13 +29,8 @@ export default defineComponent({
   name: 'c-footer',
   computed: {
     ...mapState({
-      companyPhone: (state: State) => state.companyPhone,
-      companyAddress: (state: State) => state.companyAddress,
-      companyName: (state: State) => state.companyName
-    }),
-    companyCopyright(): string {
-      return `© ${this.companyName}, ${new Date().getFullYear()}`
-    }
+      company: (state: State) => state.company
+    })
   }
 })
 </script>
