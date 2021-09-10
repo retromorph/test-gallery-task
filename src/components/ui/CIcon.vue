@@ -23,3 +23,8 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="stylus" scoped>
+.c-icon
+  cursor pointer
+</style>
