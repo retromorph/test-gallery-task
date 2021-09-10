@@ -28,9 +28,7 @@ import {State} from "@/store"
 export default defineComponent({
   name: 'c-footer',
   computed: {
-    ...mapState({
-      company: (state: State) => state.company
-    })
+    ...mapState(["company"])
   }
 })
 </script>

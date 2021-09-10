@@ -69,9 +69,7 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapState({
-      cart: (state: State) => state.cart
-    }),
+    ...mapState(["cart"]),
     isInCart(): boolean {
       return this.cart.isProductInCart(this.masterpiece.id)
     },

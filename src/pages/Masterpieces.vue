@@ -42,12 +42,7 @@ export default defineComponent({
     this.fetchMasterpieces()
   },
   computed: {
-    ...mapState({
-      filterOptions: (state: State) => state.filterOptions,
-      selectedFilter: (state: State) => state.selectedFilter,
-      searchQuery: (state: State) => state.searchQuery,
-      masterpieces: (state: State) => state.masterpieces
-    }),
+    ...mapState(["filterOptions", "selectedFilter", "searchQuery", "masterpieces"]),
     ...mapGetters({filteredAndSearchedMasterpieces: "filteredAndSearchedMasterpieces"}),
   },
   methods: {
