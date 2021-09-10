@@ -1,12 +1,14 @@
 <template>
   <div :class="{'c-masterpiece': true, 'c-masterpiece--sold': masterpiece.isSold}">
     <div class="c-masterpiece__inner">
-      <h2>
-        {{ masterpiece.name }}
-      </h2>
-      <h4>
-        {{ masterpiece.author }}, {{ masterpiece.creationYear }}
-      </h4>
+      <div>
+        <h2>
+          {{ masterpiece.name }}
+        </h2>
+        <h4>
+          {{ masterpiece.author }}, {{ masterpiece.creationYear }}
+        </h4>
+      </div>
 
       <div v-if="masterpiece.isSold"
            class="c-masterpiece__control">
@@ -18,7 +20,13 @@
       <div v-else
            class="c-masterpiece__control">
         <div>
-
+          <div v-if="masterpiece.discountedPrice"
+               class="c-masterpiece__old-price">
+            {{ masterpiece.price }}
+          </div>
+          <div class="c-masterpiece__price">
+            {{ masterpiece.discountedPrice }}
+          </div>
         </div>
 
         <c-button v-if="isInCart"
@@ -106,7 +114,7 @@ export default defineComponent({
     &:hover
       opacity 1
 
-  .c-masterpiece__image
+  &__image
     position: absolute
     left 0
     top 0
@@ -117,6 +125,17 @@ export default defineComponent({
     z-index -1
     transition(filter)
 
+  &__control
+    width 100%
+    display flex
+    justify-content space-between
+
+  &__old-price
+    h4()
+
+  &__price
+    h(18px, 27px, bold)
+
   &--sold
     .c-masterpiece__image
       filter brightness(20%)
@@ -125,4 +144,5 @@ export default defineComponent({
   .c-masterpiece
     width 240px
     height 180px
+    padding 12px
 </style>
