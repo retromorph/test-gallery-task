@@ -5,7 +5,7 @@
 
       <c-text-button capitalize doublet>
         <c-icon icon="cart"/>
-        <div>
+        <div class="c-navbar__cart-button-inner">
           Корзина
           <c-counter :amount="productsAmount"/>
         </div>
@@ -46,4 +46,11 @@ export default defineComponent({
     text-transform uppercase
     letter-spacing 1px
     h4()
+
+  &__cart-button-inner
+    display: grid
+    align-items: center
+    grid-gap: 4px
+    grid-auto-flow: column
+    margin-top: 4px
 </style>
