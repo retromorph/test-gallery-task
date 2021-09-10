@@ -2,11 +2,12 @@
   <fieldset class="c-search-input">
     <input type="text"
            autocomplete="off"
+           :id="id"
            required
            :value="modelValue"
            @change="updateInput">
     <hr>
-    <label>{{ placeholder }}</label>
+    <label :for="id">{{ placeholder }}</label>
     <c-text-button capitalize doublet>
       Найти
       <c-icon icon="search"/>
@@ -16,9 +17,15 @@
 
 <script lang="ts">
 import {defineComponent} from "vue"
+import Helpers from "@/entities/Helpers"
 
 export default defineComponent({
   name: 'c-search-input',
+  data() {
+    return {
+      id: Helpers.uuidv4()
+    }
+  },
   props: {
     modelValue: [String, Number],
     placeholder: String

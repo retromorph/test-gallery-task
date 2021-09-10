@@ -36,7 +36,8 @@
     </div>
 
     <img class="c-masterpiece__image"
-         src="@/assets/images/test-image.png"/>
+         src="@/assets/images/test-image.png"
+         :alt="`Картинка к ${masterpiece.name}`"/>
   </div>
 </template>
 
