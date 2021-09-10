@@ -46,7 +46,7 @@ export default defineComponent({
   background-color transparent
   border none
   color secondary-color
-  padding 12px 32px
+  padding 12px 0
   cursor pointer
   h(14px, 21px, normal)
   transition(opacity)

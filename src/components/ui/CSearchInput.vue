@@ -89,5 +89,5 @@ export default defineComponent({
 
   .c-text-button
     position absolute
-    right: -32px
+    right: 0
 </style>
