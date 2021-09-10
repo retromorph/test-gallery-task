@@ -1,5 +1,6 @@
 <template>
   <c-navbar/>
+  <c-header/>
   <masterpieces/>
   <c-footer/>
 </template>
@@ -9,10 +10,11 @@ import {defineComponent} from 'vue'
 import CFooter from "@/components/CFooter.vue"
 import Masterpieces from "@/pages/Masterpieces.vue"
 import CNavbar from "@/components/CNavbar.vue"
+import CHeader from "@/components/CHeader.vue";
 
 export default defineComponent({
   name: 'App',
-  components: {CNavbar, Masterpieces, CFooter},
+  components: {CHeader, CNavbar, Masterpieces, CFooter},
 })
 </script>
 
