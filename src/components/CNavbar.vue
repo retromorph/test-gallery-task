@@ -1,7 +1,7 @@
 <template>
   <nav class="c-navbar">
     <div class="c-navbar__inner">
-      <c-icon icon="base"/>
+      <c-icon :icon="baseIcon"/>
 
       <c-text-button capitalize doublet>
         <c-icon icon="cart"/>
@@ -28,14 +28,20 @@ export default defineComponent({
   name: "c-navbar",
   data() {
     return {
-      showBigCounter: false
+      showBigCounter: false,
+      baseIcon: "base"
     }
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('resize', this.handleResize)
+
+    this.handleScroll()
+    this.handleResize()
   },
   destroyed() {
     window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     handleScroll() {
@@ -43,6 +49,13 @@ export default defineComponent({
         this.showBigCounter = true
       } else {
         this.showBigCounter = false
+      }
+    },
+    handleResize() {
+      if (window.innerWidth <= 523) {
+        this.baseIcon = "base-small"
+      } else {
+        this.baseIcon = "base"
       }
     }
   },

@@ -6,12 +6,12 @@
   "background_color": "#1B1717",
   "description": "Купите шедевры мирового искусства!",
   "icons": [{
-    "src": "favicon.png",
+    "src": "icons/favicon.png",
     "sizes": "192x192",
     "type": "image/png"
   },
   {
-    "src": "favicon-512x512.png",
+    "src": "icons/favicon-512x512.png",
     "sizes": "512x512",
     "type": "image/png"
   }],

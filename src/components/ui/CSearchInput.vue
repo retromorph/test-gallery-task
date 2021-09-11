@@ -108,4 +108,12 @@ export default defineComponent({
   .c-text-button
     position absolute
     right: 0
+
+@media (max-width: 1057px)
+  .c-search-input
+    width 344px
+
+@media (max-width: 780px)
+  .c-search-input
+    width 100%
 </style>

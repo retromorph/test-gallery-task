@@ -140,4 +140,16 @@ export default defineComponent({
       height 180px
       width 240px
       grid-area auto
+
+  .p-masterpieces__toolbar
+    flex-direction column
+    align-items stretch
+
+    .c-search-input
+      margin-top 48px
+
+@media (max-width: 523px)
+  .p-masterpieces__store
+    grid-template-columns auto
+    justify-content center
 </style>

@@ -1,6 +1,8 @@
 <template>
   <header class="c-header">
     <h1>
+      <!--Не знаю, насколько это хорошее решение, но лучше ничего выдумать не получилось.
+      Можно конечно компонент сделать или shadow-dom, но не вижу смысла-->
       <span class="c-header__styled-letter">К</span>артины эпо<span class="c-header__styled-letter">х</span>и
       В<span class="c-header__styled-letter">о</span>зр<span class="c-header__styled-letter">о</span>ждения
     </h1>

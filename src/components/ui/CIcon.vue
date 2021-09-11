@@ -14,7 +14,7 @@ export default defineComponent({
       type: String,
       required: true,
       validator(value: string): boolean {
-        return ["base", "cart", "logo", "sold", "search", "ok"].includes(value)
+        return ["base", "base-small", "cart", "logo", "sold", "search", "ok"].includes(value)
       }
     }
   },

@@ -66,4 +66,17 @@ export default defineComponent({
 
   &__copyright
     color: rgba(secondary-color, 0.5)
+
+@media (max-width: 780px)
+  .c-footer__inner
+    justify-content center
+    flex-direction column
+
+    & > div
+      display flex
+      flex-direction column
+      text-align center
+
+  .c-footer__copyright
+    margin-top 48px
 </style>
