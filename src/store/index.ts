@@ -2,6 +2,7 @@ import {ActionContext, createStore, GetterTree, MutationTree} from "vuex"
 import Masterpiece from "@/entities/Masterpiece"
 import Cart from "@/entities/Cart"
 import Company from "@/entities/Company"
+import Helpers from "@/entities/Helpers";
 
 export type State = typeof state
 const state = {
@@ -36,7 +37,12 @@ const getters = {
     },
     filteredAndSearchedMasterpieces(state: State, getters: any): Masterpiece[] {
         return getters.filteredMasterpieces.filter(
-            (masterpiece: Masterpiece) => masterpiece.name.toLowerCase().includes(state.searchQuery.toLowerCase())
+            (masterpiece: Masterpiece) =>
+                masterpiece.name.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+                Helpers.getInstance().levenshtein(
+                    masterpiece.name.toLowerCase(),
+                    state.searchQuery.toLowerCase()
+                ) < Math.ceil(state.searchQuery.length / 5)
         )
     }
 }
