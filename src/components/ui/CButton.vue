@@ -81,4 +81,8 @@ export default defineComponent({
   &--doublet
     grid-template-columns auto auto
     grid-gap: 10px
+
+@media (max-width: 1440px)
+  .c-button--active
+    padding 0 16px
 </style>

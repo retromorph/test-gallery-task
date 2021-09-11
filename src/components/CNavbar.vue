@@ -81,6 +81,9 @@ export default defineComponent({
     grid-auto-flow: column
     margin-top: 4px
 
+    .c-counter
+      padding-left 2px
+
 .c-big-counter-container
   position sticky
   display flex

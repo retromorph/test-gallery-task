@@ -132,6 +132,7 @@ export default defineComponent({
     justify-content space-between
 
   &__old-price
+    text-decoration line-through
     h4()
 
   &__price
