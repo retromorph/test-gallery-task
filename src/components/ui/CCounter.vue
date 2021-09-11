@@ -33,7 +33,6 @@ export default defineComponent({
   width 20px
   height 20px
   border-radius 100%
-  padding-left 1px
   background-color secondary-color
   color primary-color
   h(12px, 12px, regular)

@@ -1,0 +1,16 @@
+{
+  "name": "Эпоха возрождения",
+  "short_name": "Эпоха возрождения",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1B1717",
+  "description": "Купите шедевры мирового искусства!",
+  "icons": [{
+    "src": "images/touch/favicon.ico",
+    "sizes": "48x48",
+    "type": "image/png"
+  }],
+  "related_applications": [{
+    "platform": "web"
+  }]
+}
