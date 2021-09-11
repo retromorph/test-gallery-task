@@ -28,7 +28,7 @@
             {{ masterpiece.price }}
           </div>
           <div class="c-masterpiece__price">
-            {{ masterpiece.discountedPrice }}
+            {{ masterpiece.discountedPrice ?? masterpiece.price }}
           </div>
         </div>
 
