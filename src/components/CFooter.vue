@@ -3,17 +3,17 @@
     <div class="c-footer__inner">
       <div>
         <h2>
-          {{ companyPhone }}
+          {{ company.companyPhone }}
         </h2>
 
         <h2>
-          {{ companyAddress }}
+          {{ company.companyAddress }}
         </h2>
       </div>
 
       <div>
         <h2 class="c-footer__copyright">
-          {{ companyCopyright }}
+          {{ company.copyright }}
         </h2>
       </div>
     </div>
@@ -28,25 +28,19 @@ import {State} from "@/store"
 export default defineComponent({
   name: 'c-footer',
   computed: {
-    ...mapState({
-      companyPhone: (state: State) => state.companyPhone,
-      companyAddress: (state: State) => state.companyAddress,
-      companyName: (state: State) => state.companyName
-    }),
-    companyCopyright(): string {
-      return `© ${this.companyName}, ${new Date().getFullYear()}`
-    }
+    ...mapState(["company"])
   }
 })
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
 
 .c-footer
   position relative
   height: 218px
-  background: url("~@/assets/images/footer-image.png")
+  background: url("~@/assets/images/footer-image.webp") center center
   color: secondary-color
   margin-top 150px
   z-index -1
@@ -59,7 +53,7 @@ export default defineComponent({
     top 0
     right 0
     bottom 0
-    background rgba(primary-color, 0.5)
+    background rgba(primary-color, 0.2)
     z-index -1
 
   &__inner
@@ -73,5 +67,16 @@ export default defineComponent({
   &__copyright
     color: rgba(secondary-color, 0.5)
 
+@media (max-width: 780px)
+  .c-footer__inner
+    justify-content center
+    flex-direction column
 
+    & > div
+      display flex
+      flex-direction column
+      text-align center
+
+  .c-footer__copyright
+    margin-top 48px
 </style>

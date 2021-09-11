@@ -1,6 +1,8 @@
 <template>
   <header class="c-header">
     <h1>
+      <!--Не знаю, насколько это хорошее решение, но лучше ничего выдумать не получилось.
+      Можно конечно компонент сделать или shadow-dom, но не вижу смысла-->
       <span class="c-header__styled-letter">К</span>артины эпо<span class="c-header__styled-letter">х</span>и
       В<span class="c-header__styled-letter">о</span>зр<span class="c-header__styled-letter">о</span>ждения
     </h1>
@@ -16,7 +18,8 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
 
 .c-header
   margin-top: 48px
@@ -28,4 +31,8 @@ export default defineComponent({
 
   &__styled-letter
     font-family font-family-styled
+
+@media (max-width: 780px)
+  .c-header
+    display none
 </style>

@@ -29,25 +29,18 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent} from "vue"
 import {mapActions, mapGetters, mapMutations, mapState} from "vuex"
-import {State} from "@/store"
-import CSearchInput from "@/components/ui/CSearchInput.vue";
-import CMasterpiece from "@/components/CMasterpiece.vue";
+import CMasterpiece from "@/components/CMasterpiece.vue"
 
 export default defineComponent({
-  name: 'Masterpieces',
+  name: "Masterpieces",
   components: {CMasterpiece},
   mounted() {
     this.fetchMasterpieces()
   },
   computed: {
-    ...mapState({
-      filterOptions: (state: State) => state.filterOptions,
-      selectedFilter: (state: State) => state.selectedFilter,
-      searchQuery: (state: State) => state.searchQuery,
-      masterpieces: (state: State) => state.masterpieces
-    }),
+    ...mapState(["filterOptions", "selectedFilter", "searchQuery", "masterpieces"]),
     ...mapGetters({filteredAndSearchedMasterpieces: "filteredAndSearchedMasterpieces"}),
   },
   methods: {
@@ -64,7 +57,9 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
+@import "~@/assets/styles/animations.styl"
 
 .p-masterpieces
   margin-top: 132px
@@ -73,10 +68,11 @@ export default defineComponent({
   &__toolbar
     display flex
     justify-content space-between
+    align-items center
 
   &__store
     display grid
-    grid-template-columns 1fr 1fr 1fr 1fr
+    grid-template-columns repeat(4, 1fr)
     grid-gap 32px
     margin-top 90px
 
@@ -110,4 +106,50 @@ export default defineComponent({
   &-enter {
     transform: scale(0.9)
   }
+
+@media (max-width: 1920px)
+  .p-masterpieces__store
+    .c-masterpiece:nth-child(13n+3)
+      height 452px
+      width 592px
+      grid-area 1 / 3 / 3 / 5
+
+@media (max-width: 1440px)
+  .p-masterpieces__store
+    grid-gap: 27px
+
+    .c-masterpiece:nth-child(13n+3)
+      height 387px
+      width 507px
+      grid-area 1 / 3 / 3 / 5
+
+@media (max-width: 1070px)
+  .p-masterpieces__store
+    grid-template-columns repeat(3, 1fr)
+
+    .c-masterpiece:nth-child(13n+3)
+      height 180px
+      width 240px
+      grid-area auto
+
+@media (max-width: 780px)
+  .p-masterpieces__store
+    grid-template-columns repeat(2, 1fr)
+
+    .c-masterpiece:nth-child(13n+3)
+      height 180px
+      width 240px
+      grid-area auto
+
+  .p-masterpieces__toolbar
+    flex-direction column
+    align-items stretch
+
+    .c-search-input
+      margin-top 48px
+
+@media (max-width: 523px)
+  .p-masterpieces__store
+    grid-template-columns auto
+    justify-content center
 </style>

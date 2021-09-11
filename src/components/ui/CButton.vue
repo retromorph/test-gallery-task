@@ -40,7 +40,8 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
 
 .c-button
   display grid
@@ -80,4 +81,8 @@ export default defineComponent({
   &--doublet
     grid-template-columns auto auto
     grid-gap: 10px
+
+@media (max-width: 1440px)
+  .c-button--active
+    padding 0 16px
 </style>
