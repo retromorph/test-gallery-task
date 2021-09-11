@@ -29,25 +29,18 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent} from "vue"
 import {mapActions, mapGetters, mapMutations, mapState} from "vuex"
-import {State} from "@/store"
-import CSearchInput from "@/components/ui/CSearchInput.vue";
-import CMasterpiece from "@/components/CMasterpiece.vue";
+import CMasterpiece from "@/components/CMasterpiece.vue"
 
 export default defineComponent({
-  name: 'Masterpieces',
+  name: "Masterpieces",
   components: {CMasterpiece},
   mounted() {
     this.fetchMasterpieces()
   },
   computed: {
-    ...mapState({
-      filterOptions: (state: State) => state.filterOptions,
-      selectedFilter: (state: State) => state.selectedFilter,
-      searchQuery: (state: State) => state.searchQuery,
-      masterpieces: (state: State) => state.masterpieces
-    }),
+    ...mapState(["filterOptions", "selectedFilter", "searchQuery", "masterpieces"]),
     ...mapGetters({filteredAndSearchedMasterpieces: "filteredAndSearchedMasterpieces"}),
   },
   methods: {
@@ -64,7 +57,9 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
+@import "~@/assets/styles/animations.styl"
 
 .p-masterpieces
   margin-top: 132px

@@ -3,9 +3,9 @@
     <component v-for="option in options"
                :key="option.value"
                :is="buttonOrTextButton(option.value)"
-               @click="()=>select(option.value)"
                unactive
-               size="small">
+               size="small"
+               @click="()=>select(option.value)">
       {{ option.name }}
     </component>
   </div>
@@ -35,8 +35,6 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
-
 .c-select
   display grid
   grid-auto-flow column

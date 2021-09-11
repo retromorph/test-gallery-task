@@ -1,12 +1,17 @@
 <template>
-  <div :class="{'c-masterpiece': true, 'c-masterpiece--sold': masterpiece.isSold}">
+  <div :class="{
+    'c-masterpiece': true,
+    'c-masterpiece--sold': masterpiece.isSold
+  }">
     <div class="c-masterpiece__inner">
-      <h2>
-        {{ masterpiece.name }}
-      </h2>
-      <h4>
-        {{ masterpiece.author }}, {{ masterpiece.creationYear }}
-      </h4>
+      <div>
+        <h2>
+          {{ masterpiece.name }}
+        </h2>
+        <h4>
+          {{ masterpiece.author }}, {{ masterpiece.creationYear }}
+        </h4>
+      </div>
 
       <div v-if="masterpiece.isSold"
            class="c-masterpiece__control">
@@ -18,7 +23,13 @@
       <div v-else
            class="c-masterpiece__control">
         <div>
-
+          <div v-if="masterpiece.discountedPrice"
+               class="c-masterpiece__old-price">
+            {{ masterpiece.price }}
+          </div>
+          <div class="c-masterpiece__price">
+            {{ masterpiece.discountedPrice ?? masterpiece.price }}
+          </div>
         </div>
 
         <c-button v-if="isInCart"
@@ -36,7 +47,8 @@
     </div>
 
     <img class="c-masterpiece__image"
-         src="@/assets/images/test-image.png"/>
+         :src="imageUrl"
+         :alt="`Картинка к ${masterpiece.name}`"/>
   </div>
 </template>
 
@@ -57,11 +69,12 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapState({
-      cart: (state: State) => state.cart
-    }),
+    ...mapState(["cart"]),
     isInCart(): boolean {
       return this.cart.isProductInCart(this.masterpiece.id)
+    },
+    imageUrl(): string {
+      return require(`@/assets/images/image-${this.masterpiece.id}.webp`)
     }
   },
   methods: {
@@ -74,7 +87,8 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/assets/styles/global.styl"
+@import "~@/assets/styles/variables.styl"
+@import "~@/assets/styles/mixins.styl"
 
 .c-masterpiece
   position relative
@@ -101,7 +115,7 @@ export default defineComponent({
     &:hover
       opacity 1
 
-  .c-masterpiece__image
+  &__image
     position: absolute
     left 0
     top 0
@@ -112,6 +126,18 @@ export default defineComponent({
     z-index -1
     transition(filter)
 
+  &__control
+    width 100%
+    display flex
+    justify-content space-between
+
+  &__old-price
+    text-decoration line-through
+    h4()
+
+  &__price
+    h(18px, 27px, bold)
+
   &--sold
     .c-masterpiece__image
       filter brightness(20%)
@@ -120,4 +146,5 @@ export default defineComponent({
   .c-masterpiece
     width 240px
     height 180px
+    padding 12px
 </style>

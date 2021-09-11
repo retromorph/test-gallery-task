@@ -3,6 +3,7 @@ import App from './App.vue'
 import components from '@/components/ui'
 import store from './store'
 
+
 const app = createApp(App)
 
 components.forEach(component => {

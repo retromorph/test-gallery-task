@@ -10,8 +10,7 @@ export default class Masterpiece {
 
     // fabric method to create Masterpiece from data
     static fromData(data: any): Masterpiece {
-        console.log(data)
-        return new Masterpiece(data["id"], "", data["name"], data["author"], data["creationYear"], data["price"], data["discountedPrice"], data["isSold"])
+        return new Masterpiece(data["id"], `@/assets/images/image-${data["id"]}.webp`, data["name"], data["author"], data["creationYear"], data["price"], data["discountedPrice"], data["isSold"])
     }
 
     constructor(id: number, image: string, name: string, author: string, creationYear: string, price: string | null, discountedPrice: string | null, isSold: boolean) {
@@ -28,7 +27,6 @@ export default class Masterpiece {
     get id(): number {
         return this._id
     }
-
 
     get image(): string {
         return this._image
