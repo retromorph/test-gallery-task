@@ -29,14 +29,12 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent} from "vue"
 import {mapActions, mapGetters, mapMutations, mapState} from "vuex"
-import {State} from "@/store"
-import CSearchInput from "@/components/ui/CSearchInput.vue";
-import CMasterpiece from "@/components/CMasterpiece.vue";
+import CMasterpiece from "@/components/CMasterpiece.vue"
 
 export default defineComponent({
-  name: 'Masterpieces',
+  name: "Masterpieces",
   components: {CMasterpiece},
   mounted() {
     this.fetchMasterpieces()

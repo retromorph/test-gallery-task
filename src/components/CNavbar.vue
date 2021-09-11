@@ -12,6 +12,12 @@
       </c-text-button>
     </div>
   </nav>
+  <transition name="fade">
+    <div v-show="showBigCounter"
+         class="c-big-counter-container">
+      <c-counter :amount="productsAmount"/>
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -20,6 +26,26 @@ import {mapGetters} from "vuex"
 
 export default defineComponent({
   name: "c-navbar",
+  data() {
+    return {
+      showBigCounter: false
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll() {
+      if (pageYOffset > 200) {
+        this.showBigCounter = true
+      } else {
+        this.showBigCounter = false
+      }
+    }
+  },
   computed: {
     ...mapGetters({productsAmount: "productsAmount"})
   }
@@ -29,6 +55,7 @@ export default defineComponent({
 <style lang="stylus" scoped>
 @import "~@/assets/styles/variables.styl"
 @import "~@/assets/styles/mixins.styl"
+@import "~@/assets/styles/animations.styl"
 
 .c-navbar
   color: secondary-color
@@ -53,4 +80,17 @@ export default defineComponent({
     grid-gap: 4px
     grid-auto-flow: column
     margin-top: 4px
+
+.c-big-counter-container
+  position sticky
+  display flex
+  justify-content flex-end
+  top: 0
+  width 100%
+
+  .c-counter
+    position absolute
+    margin-top 20px
+    margin-right 20px
+    transform scale(2)
 </style>
