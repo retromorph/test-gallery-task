@@ -98,15 +98,17 @@ export default defineComponent({
       padding-left 2px
 
 .c-big-counter-container
+  box-sizing border-box
   position sticky
   display flex
   justify-content flex-end
   top: 0
-  width 100%
+  right: 0
+  width 100vw
 
   .c-counter
     position absolute
-    margin-top 20px
-    margin-right 20px
+    top 20px
+    right 20px
     transform scale(2)
 </style>
