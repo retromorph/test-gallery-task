@@ -2,11 +2,9 @@ import { Module } from "@nestjs/common"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { AppController } from "./app.controller"
 import { AppService } from "./app.service"
-import { CustomerModule } from './customer/customer.module';
-import { MasterpieceModule } from './masterpiece/masterpiece.module';
-import { CartModule } from './cart/cart.module';
-import { LolService } from './lol/lol.service';
-import { HelpersService } from './helpers/helpers.service';
+import { CustomerModule } from "./customer/customer.module"
+import { MasterpieceModule } from "./masterpiece/masterpiece.module"
+import { CartModule } from "./cart/cart.module"
 
 @Module({
   imports: [
@@ -26,7 +24,7 @@ import { HelpersService } from './helpers/helpers.service';
     CartModule,
   ],
   controllers: [AppController],
-  providers: [AppService, LolService, HelpersService],
+  providers: [AppService],
 })
 export class AppModule {
 }

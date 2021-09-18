@@ -5,8 +5,7 @@
       Можно конечно компонент сделать или shadow-dom, но не вижу смысла-->
       <span class="c-header__styled-letter">К</span>артины эпо<span
         class="c-header__styled-letter"
-        >х</span
-      >и В<span class="c-header__styled-letter">о</span>зр<span
+        >х</span>и В<span class="c-header__styled-letter">о</span>зр<span
         class="c-header__styled-letter"
         >о</span
       >ждения
